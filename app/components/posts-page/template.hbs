@@ -1,6 +1,8 @@
-<div class={{this.styleNamespace}}>
-  <h2>
-    hello
-  </h2>
-</div>
+<ul>
+  {{#each @posts as |post|}}
+    <li>
+      {{post.title}}
+    </li>
+  {{/each}}
+</ul>
 {{yield}}
