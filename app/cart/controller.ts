@@ -1,13 +1,20 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import ShoppingCartService from 'ember-quickstart/shopping-cart-service/service';
+//import {default as CartService} from './service';
 
 export default class Cart extends Controller.extend({
   // anything which *must* be merged to prototype here
 }) {
   // normal class body definition here
+  @service shoppingCartService!: ShoppingCartService;
 model!:{ price: number; }[];
   get subtotal(){
-    return this.model.reduce((acc: any,item: { price: any; })=>{
-      return acc+item.price;
+    return this.shoppingCartService.itemList.reduce((acc: any,item: {
+      count: any; price: any; 
+})=>{
+      return acc+item.price*item.count;
     },0);
   }
   get tax(){
@@ -15,6 +22,15 @@ model!:{ price: number; }[];
   }
   get total(){
     return this.subtotal+this.tax;
+  }
+  @action
+  updateItemCount(item: { count: number; }, event: { target: { value: any; }; }) {
+    const count = event.target.value;
+    if (count >= 0) {
+      item.count = count;
+    } else {
+      item.count = 0;
+    }
   }
 
 }

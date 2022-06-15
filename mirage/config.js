@@ -12,6 +12,8 @@ export default function () {
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
   this.get('/posts');
+  this.get('/products');
+  this.get('/products/:id');
   /*
     Shorthand cheatsheet:
 
