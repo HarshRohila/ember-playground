@@ -22,7 +22,7 @@
         type='number'
         class='ml-auto'
         value={{item.count}}
-        {{on 'input' (fn this.updateItemCount item)}}
+        {{on 'input' (fn this.shoppingCartService.updateItemCount item)}}
       />
       <button
         class='btn btn-danger ml-auto'

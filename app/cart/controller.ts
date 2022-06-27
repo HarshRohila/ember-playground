@@ -11,6 +11,7 @@ export default class Cart extends Controller.extend({
   @service shoppingCartService!: ShoppingCartService;
   model!: { price: number }[];
   get subtotal() {
+    debugger;
     return this.shoppingCartService.items.reduce(
       (
         acc: any,
@@ -19,7 +20,7 @@ export default class Cart extends Controller.extend({
           price: any;
         }
       ) => {
-        return acc + item.price * item.count;
+        return acc + item.price.current * item.count;
       },
       0
     );
@@ -29,17 +30,6 @@ export default class Cart extends Controller.extend({
   }
   get total() {
     return this.subtotal + this.tax;
-  }
-  @action
-  updateItemCount(item: { count: number }, event: { target: { value: any } }) {
-    const count = event.target.value;
-    console.log('updateItemCalled');
-
-    if (count >= 0) {
-      item.count = count;
-    } else {
-      item.count = 0;
-    }
   }
 }
 
