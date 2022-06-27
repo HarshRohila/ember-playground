@@ -1,47 +1,54 @@
-<main class="container mt-5">
+<main class='container mt-5'>
   <h1>Shopping Cart</h1>
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <LinkTo @route="index">
+  <ol class='breadcrumb'>
+    <li class='breadcrumb-item'>
+      <LinkTo @route='index'>
         Home
       </LinkTo>
     </li>
-    <li class="breadcrumb-item">Shopping Cart</li>
+    <li class='breadcrumb-item'>Shopping Cart</li>
   </ol>
-  {{log this.shoppingCartService.itemList}}
-  {{#each this.shoppingCartService.itemList as |item|}}
-    <div class="cart-item d-flex align-items-center">
-      <div class="cart-item-thumbnail">
-        <img src={{item.image}} alt="">
+  {{log this.shoppingCartService.items}}
+  {{#each this.shoppingCartService.items as |item|}}
+    <div class='cart-item d-flex align-items-center'>
+      <div class='cart-item-thumbnail'>
+        <img src={{item.colors.0.image}} alt='' />
       </div>
-      <div class="ml-3">
+      <div class='ml-3'>
         <h4>{{item.name}}</h4>
-        <i class="font-weight-bold">{{ item.price}}</i>
+        <i class='font-weight-bold'>{{item.price.current}}</i>
       </div>
       <input
-        type="number"
-        class="ml-auto"
+        type='number'
+        class='ml-auto'
         value={{item.count}}
-        {{on "input" (fn this.updateItemCount item)}}
+        {{on 'input' (fn this.updateItemCount item)}}
+      />
+      <button
+        class='btn btn-danger ml-auto'
+        type='button'
+        {{on 'click' (fn this.shoppingCartService.deleteFromCart item.id)}}
       >
+        del from cart
+      </button>
     </div>
   {{/each}}
-  <section class="w-50 ml-auto text-right mb-5">
-    <div class="row">
-      <span class="col">Subtotal</span>
-      <span class="col">{{ this.subtotal}}</span>
+  <section class='w-50 ml-auto text-right mb-5'>
+    <div class='row'>
+      <span class='col'>Subtotal</span>
+      <span class='col'>{{this.subtotal}}</span>
     </div>
-    <div class="row">
-      <span class="col">Tax</span>
-      <span class="col">{{this.tax}}</span>
+    <div class='row'>
+      <span class='col'>Tax</span>
+      <span class='col'>{{this.tax}}</span>
     </div>
-    <div class="row">
-      <span class="col">Total</span>
-      <span class="col">{{this.total}}</span>
+    <div class='row'>
+      <span class='col'>Total</span>
+      <span class='col'>{{this.total}}</span>
     </div>
   </section>
 
-  <button type="button" class="btn btn-success float-right">
+  <button type='button' class='btn btn-success float-right'>
     Check out
   </button>
 </main>

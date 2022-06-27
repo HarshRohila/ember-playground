@@ -17,7 +17,7 @@ export default class Item extends Route.extend({
   //     item_id
   //   }=params;
   //   const product = products.find(({ id }) => id === item_id);
-  //   //console.log(product);
+  //   /home/saif0660/projects/ember-playground/app/item//console.log(product);
 
   //   return product;
   // }

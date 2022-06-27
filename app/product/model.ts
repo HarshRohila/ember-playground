@@ -2,7 +2,7 @@ import { attr } from '@ember-data/model';
 import DS from 'ember-data';
 
 export default class Product extends DS.Model.extend({}) {
-  @attr('string') name!: string;
+  @attr() name!: string;
   @attr() price!: Price;
   @attr() description!: string;
   @attr() features!: string[];

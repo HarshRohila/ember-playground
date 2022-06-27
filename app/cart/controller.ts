@@ -9,35 +9,43 @@ export default class Cart extends Controller.extend({
 }) {
   // normal class body definition here
   @service shoppingCartService!: ShoppingCartService;
-model!:{ price: number; }[];
-  get subtotal(){
-    return this.shoppingCartService.itemList.reduce((acc: any,item: {
-      count: any; price: any; 
-})=>{
-      return acc+item.price*item.count;
-    },0);
+  model!: { price: number }[];
+  get subtotal() {
+    return this.shoppingCartService.items.reduce(
+      (
+        acc: any,
+        item: {
+          count: any;
+          price: any;
+        }
+      ) => {
+        return acc + item.price * item.count;
+      },
+      0
+    );
   }
-  get tax(){
-    return 0.09*this.subtotal;
+  get tax() {
+    return 0.09 * this.subtotal;
   }
-  get total(){
-    return this.subtotal+this.tax;
+  get total() {
+    return this.subtotal + this.tax;
   }
   @action
-  updateItemCount(item: { count: number; }, event: { target: { value: any; }; }) {
+  updateItemCount(item: { count: number }, event: { target: { value: any } }) {
     const count = event.target.value;
+    console.log('updateItemCalled');
+
     if (count >= 0) {
       item.count = count;
     } else {
       item.count = 0;
     }
   }
-
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your controllers.
 declare module '@ember/controller' {
   interface Registry {
-    'cart': Cart;
+    cart: Cart;
   }
 }

@@ -1,13 +1,13 @@
+<LinkTo @route='cart' class='cart-link'>
+  <i class='fa fa-shopping-cart'></i>
+  {{log this.shoppingCartService.items.length}}
 
-<LinkTo @route="cart" class="cart-link">
-  <i class="fa fa-shopping-cart"></i>
-  {{log this.shoppingCart.itemList.length}}
-  {{#if this.shoppingCart.itemList.length}}
-    <span class="cart-count d-inline-flex justify-content-center align-items-center">
-      {{this.shoppingCart.itemList.length}}
-    </span>
-  {{/if}}
+  <span
+    class='cart-count d-inline-flex justify-content-center align-items-center'
+  >
+    {{this.shoppingCartService.items.length}}
+  </span>
 </LinkTo>
-<main class="container mt-5">
+<main class='container mt-5'>
   {{yield}}
 </main>
