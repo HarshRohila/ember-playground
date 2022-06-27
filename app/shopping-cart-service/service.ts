@@ -115,7 +115,9 @@ export default class ShoppingCartService extends Service.extend({
     } else {
       itemNeedToUpdate.count = 0;
     }
+    this.items = shoppingCart.items;
     shoppingCart.save();
+    this.totalItems();
   }
   @action
   totalItems() {
