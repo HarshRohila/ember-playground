@@ -1,5 +1,9 @@
 @import "pod-styles";
+@import './homepage';
+@import './product';
+@import './cart';
 
 #title {
 	color: blue;
 }
+@import "ember-bootstrap/bootstrap";

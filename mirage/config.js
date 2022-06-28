@@ -1,3 +1,4 @@
+import { Response } from 'miragejs';
 export default function () {
   // These comments are here to help you get started. Feel free to delete them.
 
@@ -12,6 +13,16 @@ export default function () {
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
   this.get('/posts');
+  this.get('/products');
+  this.get('/products/:id');
+  this.get('/shopping-carts/:id', () => {
+    return new Response(404, {}, { errors: ['not found'] });
+  });
+  //this.get('/shopping-carts/:id');
+  this.post('/shopping-carts');
+  this.post('/products/:id');
+  this.del('/shopping-carts/:id');
+  this.patch('/shopping-carts/:id');
   /*
     Shorthand cheatsheet:
 
