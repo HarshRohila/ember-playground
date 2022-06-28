@@ -11,7 +11,6 @@ export default class Cart extends Controller.extend({
   @service shoppingCartService!: ShoppingCartService;
   model!: { price: number }[];
   get subtotal() {
-    debugger;
     return this.shoppingCartService.items.reduce(
       (
         acc: any,
